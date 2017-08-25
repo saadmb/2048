@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title></title>
+    <title>2048</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
@@ -166,7 +166,7 @@
                 loadBoard();
             }
             else {
-                if (!checkComplete())
+                if (checkComplete())
                     alert('Game over.');
             }
         }
@@ -187,14 +187,14 @@
                 for (var j = 0; j < 4; j++) {
                     if (j + 1 < 4) {
                         if (board[i][j] == board[i][j + 1])
-                            return true;
+                            return false;
                         if (board[j][i] == board[j + 1][i])
-                            return true;
+                            return false;
                     }
                 }
             }
 
-            return false;
+            return true;
         }
 
         function randomIndex() {
@@ -229,7 +229,7 @@
                 switch (cells[i].innerHTML) {
                     case '2': cells[i].style = "background-color: #fff9ed;";
                         break;
-                    case '4': cells[i].style = "background-color: #efe0c4;";
+                    case '4': cells[i].style = "background-color: #ffe0a8;";
                         break;
                     case '8': cells[i].style = "background-color: #ffca68;";
                         break;
