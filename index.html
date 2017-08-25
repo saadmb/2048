@@ -5,8 +5,7 @@
     <title></title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <script src="swipe.js"></script>
+    
     <script>
         var board = [
             ['', '', '', ''],
@@ -19,28 +18,6 @@
 
         function page_load() {
             document.addEventListener('keyup', move);
-
-            var touchscreen = document.getElementById('touchscreen');
-            swipedetect(touchscreen, function (swipeDir) {
-                switch (swipeDir) {
-                    case 'top': {
-                        moveVertical('up');
-                        break;
-                    }
-                    case 'down': {
-                        moveVertical('down');
-                        break;
-                    }
-                    case 'right': {
-                        moveHorizontal('right');
-                        break;
-                    }
-                    case 'left': {
-                        moveHorizontal('left');
-                        break;
-                    }
-                }
-            });
         }
 
         function move(event) {
@@ -307,7 +284,7 @@
 </head>
 
 <body onload="page_load()">
-    <div id="touchscreen">
+    <div>
         <table id="tbl_board">
             <tr>
                 <td id="c1"></td>
