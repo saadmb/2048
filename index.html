@@ -6,31 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <style>
-        body {
-            font-family: 'Lucida Sans';
-        }
-
-        table {
-            width: 310px;
-            height: 310px;
-            margin: 30px auto;
-        }
-
-        table td {
-            width: 76px;
-            height: 76px;
-            border: 1px solid burlywood;
-            text-align: center;
-            font-weight: bold;
-            font-size: 18pt;
-            background-color: #eff2f7;
-        }
-
-        #p_score {
-            text-align: center;
-        }
-    </style>
+    <script src="swipe.js"></script>
     <script>
         var board = [
             ['', '', '', ''],
@@ -43,6 +19,28 @@
 
         function page_load() {
             document.addEventListener('keyup', move);
+
+            var touchscreen = document.getElementById('touchscreen');
+            swipedetect(touchscreen, function (swipeDir) {
+                switch (swipeDir) {
+                    case 'top': {
+                        moveVertical('up');
+                        break;
+                    }
+                    case 'down': {
+                        moveVertical('down');
+                        break;
+                    }
+                    case 'right': {
+                        moveHorizontal('right');
+                        break;
+                    }
+                    case 'left': {
+                        moveHorizontal('left');
+                        break;
+                    }
+                }
+            });
         }
 
         function move(event) {
@@ -191,7 +189,7 @@
                 loadBoard();
             }
             else {
-                if(!checkComplete())
+                if (!checkComplete())
                     alert('Game over.');
             }
         }
@@ -213,7 +211,7 @@
                     if (j + 1 < 4) {
                         if (board[i][j] == board[i][j + 1])
                             return true;
-                        if (board[j][i] == board[j+1][i])
+                        if (board[j][i] == board[j + 1][i])
                             return true;
                     }
                 }
@@ -280,10 +278,36 @@
             }
         }
     </script>
+
+    <style>
+        body {
+            font-family: 'Lucida Sans';
+        }
+
+        table {
+            width: 310px;
+            height: 310px;
+            margin: 30px auto;
+        }
+
+        table td {
+            width: 76px;
+            height: 76px;
+            border: 1px solid burlywood;
+            text-align: center;
+            font-weight: bold;
+            font-size: 18pt;
+            background-color: #eff2f7;
+        }
+
+        #p_score {
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body onload="page_load()">
-    <div>
+    <div id="touchscreen">
         <table id="tbl_board">
             <tr>
                 <td id="c1"></td>
