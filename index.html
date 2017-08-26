@@ -5,7 +5,7 @@
     <title>2048</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
     <script>
         var board = [
             ['', '', '', ''],
@@ -17,28 +17,26 @@
         var score = 0;
 
         function page_load() {
-            document.addEventListener('keyup', move);
-        }
-
-        function move(event) {
-            switch (event.key) {
-                case 'ArrowUp': {
-                    moveVertical('up');
-                    break;
+            document.addEventListener('keyup', function (event) {
+                switch (event.key) {
+                    case 'ArrowUp': {
+                        moveVertical('up');
+                        break;
+                    }
+                    case 'ArrowDown': {
+                        moveVertical('down');
+                        break;
+                    }
+                    case 'ArrowRight': {
+                        moveHorizontal('right');
+                        break;
+                    }
+                    case 'ArrowLeft': {
+                        moveHorizontal('left');
+                        break;
+                    }
                 }
-                case 'ArrowDown': {
-                    moveVertical('down');
-                    break;
-                }
-                case 'ArrowRight': {
-                    moveHorizontal('right');
-                    break;
-                }
-                case 'ArrowLeft': {
-                    moveHorizontal('left');
-                    break;
-                }
-            }
+            });
         }
 
         function moveVertical(str) {
@@ -167,7 +165,7 @@
             }
             else {
                 if (checkComplete())
-                    alert('Game over.');
+                    alert('Game over. Your score is: ' + score);
             }
         }
 
@@ -261,13 +259,13 @@
             font-family: 'Lucida Sans';
         }
 
-        table {
+        #tbl_board {
             width: 310px;
             height: 310px;
             margin: 30px auto;
         }
 
-        table td {
+        #tbl_board td {
             width: 76px;
             height: 76px;
             border: 1px solid burlywood;
